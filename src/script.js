@@ -9,6 +9,22 @@ const aiBouncer = new Bouncer(document.getElementById("ai-bouncer"));
 const playerScoreElm = document.getElementById("player-score");
 const aiScoreElm = document.getElementById("ai-score");
 
+var sfx = {
+    theme: new Howl({
+        src: [
+            "../assets/theme.mp3"
+        ],
+        autoplay: true
+    }),
+    loss: new Howl({
+        src: [
+            "../assets/goal.wav"
+        ]
+    })
+}
+
+sfx.theme.volume(0.3);
+
 let lastTime;
 
 let winningScore = 5;
@@ -18,6 +34,7 @@ function startGame() {
     winningScore = parseInt(document.getElementById("winning-score").value) || 5;
     document.getElementById("start-menu").style.display = "none";
     resetGame();
+    sfx.theme.play();
     window.requestAnimationFrame(update);
 }
 
@@ -59,6 +76,7 @@ function isLoser() {
 
 function lossHandler() {
     const rect = ball.rect();
+    sfx.loss.play();
     if(rect.right >= window.innerWidth){
         playerScoreElm.textContent = parseInt(playerScoreElm.textContent) +1;
     }else{

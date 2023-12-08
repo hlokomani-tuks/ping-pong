@@ -7,6 +7,24 @@ var sfx = {
             "../assets/wall.wav"
         ],
         autoplay: true
+    }),
+}
+
+var sfx2 = {
+    bouncer: new Howl({
+        src: [
+            "../assets/bouncer.wav"
+        ],
+        autoplay: true
+    }),
+
+}
+
+var sfx3 = {
+    goal: new Howl({
+        src: [
+            "../assets/goal.wav"
+        ]
     })
 }
 
@@ -65,8 +83,11 @@ export default class Ball {
         }
 
         if(paddleRects.some(r => isCollision(r, rect))){
+            sfx2.bouncer.play();
             this.direction.x *= -1;
             this.velocity += VELOCITY_INCR * delta;
+        }else{
+            //sfx3.goal.play();
         }
     }
     
