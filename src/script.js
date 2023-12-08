@@ -75,6 +75,10 @@ function quitGame() {
 
 // Function to start the game
 function startGame() {
+    let playerName = document.getElementById("player-name").value.trim();
+    playerName = playerName ? playerName : "Player"; // Default to "Player" if no name is entered
+    document.getElementById("player-score").setAttribute("data-name", playerName);
+    document.getElementById("ai-score").setAttribute("data-name", "AI");
     sfx.theme.play();
     document.getElementById("pause-button").style.display = "flex";
     winningScore = parseInt(document.getElementById("winning-score").value) || 5;
