@@ -142,3 +142,8 @@ input[type="number"] {
 .ui-button:hover {
     background: rgba(255, 255, 255, 0.1); /* Hover effect */
 }
+
+.game-logo {
+    max-width: 200px; /* Adjust the size as needed */
+    margin-bottom: 20px;
+}
