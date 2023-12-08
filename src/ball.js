@@ -1,6 +1,15 @@
 const INITIAL_VELOCITY = 0.025;
 const VELOCITY_INCR = .0002;
 
+var sfx = {
+    bound: new Howl({
+        src: [
+            "../assets/wall.wav"
+        ],
+        autoplay: true
+    })
+}
+
 export default class Ball {
     constructor(ballElm) {
         this.ballElm = ballElm;
@@ -50,6 +59,7 @@ export default class Ball {
 
         if(rect.bottom >= window.innerHeight || rect.top <= 0){
             // when you hit top of screen, go the opposite direction
+            sfx.bound.play();
             this.direction.y *= -1;
             this.velocity += VELOCITY_INCR * delta;
         }
