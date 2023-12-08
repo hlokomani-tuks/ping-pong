@@ -1,5 +1,24 @@
 const INITIAL_VELOCITY = 0.025;
-const VELOCITY_INCR = .00001;
+const VELOCITY_INCR = .0002;
+
+var sfx = {
+    bound: new Howl({
+        src: [
+            "../assets/wall.wav"
+        ],
+        autoplay: true
+    }),
+}
+
+var sfx2 = {
+    bouncer: new Howl({
+        src: [
+            "../assets/bouncer.wav"
+        ],
+        autoplay: true
+    }),
+
+}
 
 export default class Ball {
     constructor(ballElm) {
@@ -44,18 +63,22 @@ export default class Ball {
     update(delta , paddleRects){
         this.x += this.direction.x * this.velocity * delta;
         this.y += this.direction.y * this.velocity * delta;
-        this.velocity += VELOCITY_INCR * delta;
+        
 
         const rect = this.rect();
 
         if(rect.bottom >= window.innerHeight || rect.top <= 0){
             // when you hit top of screen, go the opposite direction
+            sfx.bound.play();
             this.direction.y *= -1;
-
+            this.velocity += VELOCITY_INCR * delta;
         }
 
         if(paddleRects.some(r => isCollision(r, rect))){
+            // hitting bouncer
+            sfx2.bouncer.play();
             this.direction.x *= -1;
+            this.velocity += VELOCITY_INCR * delta;
         }
     }
     

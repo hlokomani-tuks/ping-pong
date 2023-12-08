@@ -4,8 +4,24 @@
     <title>Bounce Battles</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="module" src="script.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" 
+    integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ==" 
+    crossorigin="anonymous"></script>
 </head>
 <body>
+    <div id="start-menu" class="overlay">
+        <div class="menu">
+            <h1>Welcome to Bounce Battles</h1>
+            <form id="start-form">
+                <button type="submit" class="menu-button">New Game</button>
+                <div class="menu-item">
+                    <label for="winning-score">Winning Score:</label>
+                    <input type="number" id="winning-score" name="winning-score" min="1" value="5">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="score">
         <div id="player-score">0</div>
         <div id="ai-score">0</div>

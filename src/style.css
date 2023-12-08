@@ -69,3 +69,60 @@ body{
     text-align: right;
     border-right: .5vh solid var(--foreground-color);
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    z-index: 1000; /* Above all other elements */
+}
+
+.menu {
+    text-align: center;
+    color: white;
+}
+
+.menu h1 {
+    margin-bottom: 20px;
+}
+
+.menu-button,
+.menu-item {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    display: block; /* Stack vertically */
+    width: 200px; /* Fixed width */
+    margin-left: auto; /* Centering the button */
+    margin-right: auto; /* Centering the button */
+}
+
+.menu-button {
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Hover effect */
+}
+
+.menu-item label,
+.menu-item input {
+    display: inline-block; /* Align label and input inline */
+}
+
+input[type="number"] {
+    background: none;
+    border: none;
+    border-bottom: 2px solid white; /* Only bottom border */
+    color: white;
+    width: 50px; /* Fixed width for input */
+    margin-left: 10px; /* Spacing between label and input */
+}
