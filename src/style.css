@@ -7,6 +7,10 @@
     --saturation: 50%;
     --foreground-color: hsl(var(--hue), var(--saturation), 75%);
     --background-color: hsl(var(--hue), var(--saturation), 15%);
+    --primary-color: #007BFF; /* Example primary color, adjust based on logo */
+    --secondary-color: #FFC107; /* Example secondary color, adjust based on logo */
+    --text-color: #FFFFFF; /* Adjust text color for readability */
+    --button-hover-color: rgba(255, 255, 255, 0.1); /* Adjust button hover effect color */
 }
 
 body{
@@ -144,6 +148,6 @@ input[type="number"] {
 }
 
 .game-logo {
-    max-width: 200px; /* Adjust the size as needed */
-    margin-bottom: 20px;
+    max-width: 250px; /* Adjust the size as needed */
+    margin-bottom: 30px;
 }

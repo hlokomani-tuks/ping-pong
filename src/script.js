@@ -9,6 +9,7 @@ const aiBouncer = new Bouncer(document.getElementById("ai-bouncer"));
 const playerScoreElm = document.getElementById("player-score");
 const aiScoreElm = document.getElementById("ai-score");
 
+document.getElementById("pause-button").style.display = "none";
 var sfx = {
     theme: new Howl({
         src: [
@@ -34,6 +35,7 @@ let gamePaused = false;
 function pauseGame() {
     gamePaused = true;
     window.cancelAnimationFrame(update);
+    document.getElementById("pause-button").style.display = "flex";
     document.getElementById("pause-menu").style.display = "flex";
     sfx.theme.volume(0.1);
     document.getElementById("pause-button").textContent = "Resume";
@@ -65,6 +67,8 @@ function quitGame() {
     gamePaused = false;
     document.getElementById("pause-menu").style.display = "none";
     document.getElementById("start-menu").style.display = "flex";
+    document.getElementById("pause-button").textContent = "Pause";
+    document.getElementById("pause-button").style.display = "none";
     resetGame();
     sfx.theme.stop();
 }
@@ -72,6 +76,7 @@ function quitGame() {
 // Function to start the game
 function startGame() {
     sfx.theme.play();
+    document.getElementById("pause-button").style.display = "flex";
     winningScore = parseInt(document.getElementById("winning-score").value) || 5;
     document.getElementById("start-menu").style.display = "none";
     resetGame();
@@ -80,6 +85,7 @@ function startGame() {
 
 // Function to reset the game
 function resetGame() {
+    document.getElementById("pause-button").textContent = "Pause";
     ball.reset();
     playerBouncer.reset();
     aiBouncer.reset();
@@ -93,8 +99,8 @@ function update(time){
 
     if(gamePaused) return;
 
-// convert time to delta
     if(lastTime != null){
+        // convert time to delta
         const delta = time - lastTime;
         ball.update(delta, [playerBouncer.rect(), aiBouncer.rect()]);
         aiBouncer.update(delta, ball.y);
@@ -147,6 +153,7 @@ function displayWinner(winner) {
 
     // Show the game over menu
     document.getElementById("game-over-menu").style.display = "flex";
+    document.getElementById("pause-button").style.display = "none";
 }
 
 // Restart Game Function
@@ -162,6 +169,7 @@ function restartGame() {
 function mainMenu() {
     sfx.theme.stop();
     document.getElementById("game-over-menu").style.display = "none";
+    document.getElementById("pause-button").style.display = "none";
     document.getElementById("start-menu").style.display = "flex";
     resetGame();
 }
