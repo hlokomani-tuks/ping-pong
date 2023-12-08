@@ -7,6 +7,10 @@
     --saturation: 50%;
     --foreground-color: hsl(var(--hue), var(--saturation), 75%);
     --background-color: hsl(var(--hue), var(--saturation), 15%);
+    --primary-color: #007BFF; /* Example primary color, adjust based on logo */
+    --secondary-color: #FFC107; /* Example secondary color, adjust based on logo */
+    --text-color: #FFFFFF; /* Adjust text color for readability */
+    --button-hover-color: rgba(255, 255, 255, 0.1); /* Adjust button hover effect color */
 }
 
 body{
@@ -48,22 +52,40 @@ body{
     height: 3.5vh;
 }
 
-.score{
+.scoreboard-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Space below the scoreboard */
+}
+
+.score{
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
     font-weight: bold;
-    font-size: 8vh;
+    font-size: 3vh;
     color: var(--foreground-color);
+    background: var(--background-color);
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 250px; /* Ensure a minimum width */
+    max-width: 60%; /* Prevent stretching across the screen */
+    margin: auto; /* Center the scoreboard itself */
 }
 
 .score > * {
-    flex-grow: 1;
-    flex-basis: 0;
-    margin: 1vh 0;
-    opacity: .5;
-    padding: 0 2vh;
+    flex: 1; /* Distribute space evenly */
+    text-align: center; /* Center text horizontally */
+    margin: 0 10px; /* Ensure some spacing on sides */
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
+.score > div:before {
+    content: attr(data-name) ": ";
+    font-weight: normal; /* Optional: Differentiate the name from the score */
+}
 
 .score > :first-child {
     text-align: right;
@@ -125,4 +147,25 @@ input[type="number"] {
     color: white;
     width: 50px; /* Fixed width for input */
     margin-left: 10px; /* Spacing between label and input */
+}
+
+.ui-button {
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 10px; /* Adjust as needed for your layout */
+    right: 10px; /* Adjust as needed for your layout */
+    z-index: 1010; /* Above the game elements */
+    padding: 10px 20px;
+    border: 2px solid white;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.ui-button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Hover effect */
+}
+
+.game-logo {
+    max-width: 250px; /* Adjust the size as needed */
+    margin-bottom: 30px;
 }
