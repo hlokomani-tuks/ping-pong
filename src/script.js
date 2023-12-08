@@ -108,7 +108,10 @@ function update(time){
         }
     }
     lastTime = time;
-    window.requestAnimationFrame(update);
+    if(!gamePaused){
+        window.requestAnimationFrame(update);
+    }
+    
 
 }
 
@@ -135,6 +138,36 @@ function lossHandler() {
     aiBouncer.reset();
 }
 
+function displayWinner(winner) {
+    gamePaused = true;
+    window.cancelAnimationFrame(update);
+    sfx.loss.stop();
+    // Update the text to show the winner
+    document.getElementById("winner-text").textContent = winner + " Wins!";
+
+    // Show the game over menu
+    document.getElementById("game-over-menu").style.display = "flex";
+}
+
+// Restart Game Function
+function restartGame() {
+    gamePaused = false;
+    lastTime = null;
+    sfx.theme.stop();
+    document.getElementById("game-over-menu").style.display = "none";
+    startGame();
+}
+
+// // Main Menu Function
+function mainMenu() {
+    sfx.theme.stop();
+    document.getElementById("game-over-menu").style.display = "none";
+    document.getElementById("start-menu").style.display = "flex";
+    resetGame();
+}
+
+// EVENT LISTENERS
+
 document.addEventListener("mousemove", e => {
     playerBouncer.position = (e.y / window.innerHeight)*100;
 })
@@ -154,7 +187,7 @@ document.addEventListener("keydown", e => {
     }
 });
 
-// button pause
+// pause button
 document.getElementById("pause-button").addEventListener("click", () => {
     // If the game is not paused, pause it; otherwise, resume
     if (!gamePaused) {
@@ -164,13 +197,12 @@ document.getElementById("pause-button").addEventListener("click", () => {
     }
 });
 
+// game over handling buttons
+document.getElementById("restart-game").addEventListener("click", restartGame);
+document.getElementById("main-menu").addEventListener("click", mainMenu);
+
+// start game button
 document.getElementById("start-form").addEventListener("submit", function(event) {
     event.preventDefault();
     startGame();
 });
-
-function displayWinner(winner) {
-    alert(winner + " Wins!");
-    document.getElementById("start-menu").style.display = "flex";
-    resetGame();
-}
