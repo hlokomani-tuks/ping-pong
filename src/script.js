@@ -14,7 +14,7 @@ var sfx = {
         src: [
             "../assets/theme.mp3"
         ],
-        autoplay: true
+        volume: 0.25
     }),
     loss: new Howl({
         src: [
@@ -22,8 +22,6 @@ var sfx = {
         ]
     })
 }
-
-sfx.theme.volume(0.3);
 
 let lastTime;
 

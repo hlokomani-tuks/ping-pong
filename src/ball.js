@@ -20,14 +20,6 @@ var sfx2 = {
 
 }
 
-var sfx3 = {
-    goal: new Howl({
-        src: [
-            "../assets/goal.wav"
-        ]
-    })
-}
-
 export default class Ball {
     constructor(ballElm) {
         this.ballElm = ballElm;
@@ -83,11 +75,10 @@ export default class Ball {
         }
 
         if(paddleRects.some(r => isCollision(r, rect))){
+            // hitting bouncer
             sfx2.bouncer.play();
             this.direction.x *= -1;
             this.velocity += VELOCITY_INCR * delta;
-        }else{
-            //sfx3.goal.play();
         }
     }
     
