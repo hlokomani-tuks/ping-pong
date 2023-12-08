@@ -126,3 +126,19 @@ input[type="number"] {
     width: 50px; /* Fixed width for input */
     margin-left: 10px; /* Spacing between label and input */
 }
+
+.ui-button {
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 10px; /* Adjust as needed for your layout */
+    right: 10px; /* Adjust as needed for your layout */
+    z-index: 1010; /* Above the game elements */
+    padding: 10px 20px;
+    border: 2px solid white;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.ui-button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Hover effect */
+}

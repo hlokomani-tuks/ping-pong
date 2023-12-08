@@ -16,6 +16,7 @@ var sfx = {
         ],
         volume: 0.25
     }),
+
     loss: new Howl({
         src: [
             "../assets/goal.wav"
@@ -27,12 +28,53 @@ let lastTime;
 
 let winningScore = 5;
 
+let gamePaused = false;
+
+// Pause Game Function
+function pauseGame() {
+    gamePaused = true;
+    window.cancelAnimationFrame(update);
+    document.getElementById("pause-menu").style.display = "flex";
+    sfx.theme.volume(0.1);
+    document.getElementById("pause-button").textContent = "Resume";
+}
+
+function resumeGame() {
+    gamePaused = false;
+    document.getElementById("pause-menu").style.display = "none";
+    sfx.theme.volume(0.25);
+    lastTime = null;
+    document.getElementById("pause-button").textContent = "Pause";
+    window.requestAnimationFrame(update);
+}
+
+
+// Mute Music Function
+function toggleMuteMusic() {
+    if (sfx.theme.playing()) {
+        sfx.theme.pause();
+        document.getElementById("mute-music").textContent = "Unmute Music";
+    } else {
+        sfx.theme.play();
+        document.getElementById("mute-music").textContent = "Mute Music";
+    }
+}
+
+// Quit Game Function
+function quitGame() {
+    gamePaused = false;
+    document.getElementById("pause-menu").style.display = "none";
+    document.getElementById("start-menu").style.display = "flex";
+    resetGame();
+    sfx.theme.stop();
+}
+
 // Function to start the game
 function startGame() {
+    sfx.theme.play();
     winningScore = parseInt(document.getElementById("winning-score").value) || 5;
     document.getElementById("start-menu").style.display = "none";
     resetGame();
-    sfx.theme.play();
     window.requestAnimationFrame(update);
 }
 
@@ -48,6 +90,9 @@ function resetGame() {
 
 
 function update(time){
+
+    if(gamePaused) return;
+
 // convert time to delta
     if(lastTime != null){
         const delta = time - lastTime;
@@ -94,7 +139,30 @@ document.addEventListener("mousemove", e => {
     playerBouncer.position = (e.y / window.innerHeight)*100;
 })
 
-// window.requestAnimationFrame(update);
+document.getElementById("resume-game").addEventListener("click", resumeGame);
+document.getElementById("mute-music").addEventListener("click", toggleMuteMusic);
+document.getElementById("quit-game").addEventListener("click", quitGame);
+
+// escape key pause
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        if(gamePaused) {
+            resumeGame();
+        } else {
+            pauseGame();
+        }
+    }
+});
+
+// button pause
+document.getElementById("pause-button").addEventListener("click", () => {
+    // If the game is not paused, pause it; otherwise, resume
+    if (!gamePaused) {
+        pauseGame();
+    } else {
+        resumeGame();
+    }
+});
 
 document.getElementById("start-form").addEventListener("submit", function(event) {
     event.preventDefault();
