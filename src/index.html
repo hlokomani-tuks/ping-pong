@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bounce Battles</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="module" src="script.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" 
+    integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ==" 
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="start-menu" class="overlay">
+        <div class="menu">
+            <img src="../assets/bounce-battles.png" alt="Bounce Battles Logo" class="game-logo">
+            <h1>Welcome to Bounce Battles</h1>
+            <form id="start-form">
+                <button type="submit" class="menu-button">New Game</button>
+                <label for="player-name">Your Name:</label>
+                <input type="text" id="player-name" name="player-name" placeholder="Player">
+                <div class="menu-item">
+                    <label for="winning-score">Winning Score:</label>
+                    <input type="number" id="winning-score" name="winning-score" min="1" value="5">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="pause-menu" class="overlay" style="display: none;">
+        <div class="menu">
+            <h1>Paused</h1>
+            <button id="resume-game" class="menu-button">Resume Game</button>
+            <button id="mute-music" class="menu-button">Mute Music</button>
+            <button id="quit-game" class="menu-button">Quit Game</button>
+        </div>
+    </div>
+
+    <div id="game-over-menu" class="overlay" style="display: none;">
+        <div class="menu">
+            <h1 id="winner-text">Player Wins!</h1>
+            <button id="restart-game" class="menu-button">Restart Game</button>
+            <button id="main-menu" class="menu-button">Main Menu</button>
+        </div>
+    </div>
+
+    <div id="game-ui">
+        <button id="pause-button" class="ui-button">Pause</button>
+    </div>
+    
+
+    <div class="scoreboard-container">
+        <div class="score">
+            <div id="player-score">0</div>
+            <div id="ai-score">0</div>
+        </div>
+    </div>
+    <div id="ball" class="ball"></div>
+    <div class="bouncer ai" id="player-bouncer"></div>
+    <div class="bouncer player" id="ai-bouncer"></div>
+</body>
+</html>
+

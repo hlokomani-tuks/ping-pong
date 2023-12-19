@@ -1,0 +1,171 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+:root{
+    --hue: 200;
+    --saturation: 50%;
+    --foreground-color: hsl(var(--hue), var(--saturation), 75%);
+    --background-color: hsl(var(--hue), var(--saturation), 15%);
+    --primary-color: #007BFF; /* Example primary color, adjust based on logo */
+    --secondary-color: #FFC107; /* Example secondary color, adjust based on logo */
+    --text-color: #FFFFFF; /* Adjust text color for readability */
+    --button-hover-color: rgba(255, 255, 255, 0.1); /* Adjust button hover effect color */
+}
+
+body{
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--background-color);
+}
+
+.bouncer {
+    --position: 50;
+
+    position: absolute;
+    background-color:var(--foreground-color);
+    top: calc(var(--position) * 1vh);
+    transform: translateY(-50%);
+    width: 1vh;
+    height: 15vh;
+}
+
+.bouncer.ai{
+    left: 1vw;
+}
+
+.bouncer.player{
+    right: 1vw;
+}
+
+.ball{
+    --x: 50;
+    --y: 50;
+
+    position: absolute;
+    border-radius: 48%;
+    background-color:var(--foreground-color);
+    left: calc(var(--x) * 1vw);
+    top: calc(var(--y) * 1vh);
+    transform: translate(-50% , -50%);
+    width: 3vh;
+    height: 3.5vh;
+}
+
+.scoreboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Space below the scoreboard */
+}
+
+.score{
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
+    font-weight: bold;
+    font-size: 3vh;
+    color: var(--foreground-color);
+    background: var(--background-color);
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 250px; /* Ensure a minimum width */
+    max-width: 60%; /* Prevent stretching across the screen */
+    margin: auto; /* Center the scoreboard itself */
+}
+
+.score > * {
+    flex: 1; /* Distribute space evenly */
+    text-align: center; /* Center text horizontally */
+    margin: 0 10px; /* Ensure some spacing on sides */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.score > div:before {
+    content: attr(data-name) ": ";
+    font-weight: normal; /* Optional: Differentiate the name from the score */
+}
+
+.score > :first-child {
+    text-align: right;
+    border-right: .5vh solid var(--foreground-color);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    z-index: 1000; /* Above all other elements */
+}
+
+.menu {
+    text-align: center;
+    color: white;
+}
+
+.menu h1 {
+    margin-bottom: 20px;
+}
+
+.menu-button,
+.menu-item {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    display: block; /* Stack vertically */
+    width: 200px; /* Fixed width */
+    margin-left: auto; /* Centering the button */
+    margin-right: auto; /* Centering the button */
+}
+
+.menu-button {
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Hover effect */
+}
+
+.menu-item label,
+.menu-item input {
+    display: inline-block; /* Align label and input inline */
+}
+
+input[type="number"] {
+    background: none;
+    border: none;
+    border-bottom: 2px solid white; /* Only bottom border */
+    color: white;
+    width: 50px; /* Fixed width for input */
+    margin-left: 10px; /* Spacing between label and input */
+}
+
+.ui-button {
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 10px; /* Adjust as needed for your layout */
+    right: 10px; /* Adjust as needed for your layout */
+    z-index: 1010; /* Above the game elements */
+    padding: 10px 20px;
+    border: 2px solid white;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.ui-button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Hover effect */
+}
+
+.game-logo {
+    max-width: 250px; /* Adjust the size as needed */
+    margin-bottom: 30px;
+}
