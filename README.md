@@ -1,6 +1,6 @@
 ## Bounce Battles Game
 
-Bounce Battles is my take on the classic mini game of ping pong, which needs no explanation.
+Bounce Battles is my take on the classic mini game of ping pong.
 
 # Technologies Used:
 
@@ -25,6 +25,10 @@ ball.js: Class definition for the game ball.
 bouncer.js: Class definition for bouncers.
 
 assets/: Directory for game assets.
+
+# Motivation:
+
+I needed some practice on JavaScript and this was a fun way to do that.
 
 # Lessons learned:
 
